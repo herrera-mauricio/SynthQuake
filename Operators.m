@@ -1,0 +1,65 @@
+classdef Operators<handle
+    
+    properties
+  
+        %Variables
+        NFFT=nan; 
+        Time=nan;
+        Real_Motion=nan;
+        ResampledReal_Motion=nan;
+        T=nan;
+        F=nan;
+        w=nan;
+        Sa=nan;
+        Fr=nan;
+        Fs=nan;
+        AI_RM=nan;
+        DsRM=nan;
+        PSA_RM=nan;
+        z=nan;
+        Max_Iter=nan;
+        TOL=nan;
+        New_Motion=nan;
+        PSA_NM=nan;
+        Num_Iter=nan;
+        R=nan;
+        AI_NM=nan;
+        DsNM=nan;
+        AINM_t5=nan;
+        AINM_t95=nan;
+        AIRM_t5=nan;
+        AIRM_t95=nan;
+        AIRM_n5=nan;
+        AIRM_n95=nan;
+        ENV=nan;
+        Dw=nan;
+        CPSD_RM=nan;
+        CPSD_NM=nan;
+        SpectAmp_RM=nan;
+        SpectFreq_RM=nan;
+        SpectTime_RM=nan;
+        SpectAmp_NM=nan;
+        SpectFreq_NM=nan;
+        SpectTime_NM=nan;
+        PGA_RM=nan;
+        CAV_RM=nan;
+        Arms_RM=nan;
+        Ic_RM=nan;
+        ASI_RM=nan;
+        PGA_NM=nan;
+        CAV_NM=nan;
+        Arms_NM=nan;
+        Ic_NM=nan;
+        ASI_NM=nan;
+
+        %Objetos
+        Main=nan;
+        DS=nan;
+        IF1=nan;
+        IF2=nan;
+        ListPanel=nan;
+        Methods=nan;
+        list=nan;
+    end
+end
+
