@@ -1,4 +1,4 @@
-function [New_Motion, PSA_NM, Num_Iter, R] = AlgCacciola(TOL, Max_Iter, Time, Real_Motion, Env, NFFT, Sa, PSA_RM, Fr, w, Dw, z, DsRM)
+function [New_Motion, PSA_NM,PSV_NM,PSD_NM, Num_Iter, R] = AlgCacciola(TOL, Max_Iter, Time, Real_Motion, Env, NFFT, Sa, PSA_RM, Fr, w, Dw, z, DsRM)
 % According to Cacciola, 2010.
 
 R = 1;
@@ -19,7 +19,7 @@ while R > TOL
     New_Motion = a * Real_Motion + Cor_Motion';
 
     % Calcular nuevo espectro de respuesta
-    [PSA_NM, ~, ~] = functions.RSNewmark(New_Motion, Fr, w(1:end-1), z);
+    [PSA_NM, PSV_NM,PSD_NM] = functions.RSNewmark(New_Motion, Fr, w(1:end-1), z);
 
     % Validar dimensión
     if length(PSA_NM) ~= length(Sa)
