@@ -27,7 +27,6 @@ MethodPanel1
 MethodPanel2
 MethodPanel3
 
-
 % === BOTTOM PANEL BUTTONS ===
 Save.Panel = uipanel('Parent',Op.Main,'Units','normalized','Position',[0 0 0.2 0.15],'BorderType','none');
 Save.Button{1} = uicontrol('Parent',Save.Panel,'Units','normalized','Position',[0.05 0.1 0.425 0.35],'Style','pushbutton','String','Cancel');
@@ -44,14 +43,20 @@ MainAxes.Tabs{3} = uitab(MainAxes.Tabs{1},'Title','Power Spectral Density');
 MainAxes.Tabs{4} = uitab(MainAxes.Tabs{1},'Title','Spectrogram');
 MainAxes.Tabs{5} = uitab(MainAxes.Tabs{1},'Title','Intensity Measures and Others');
 
+MainAxes.Tabs{6} = uitabgroup(MainAxes.Panel,'Units','normalized','Position',[0.00 0.00 0.50 1.00]);
+MainAxes.Tabs{7} = uitab(MainAxes.Tabs{6},'Title','Acceleration');
+MainAxes.Tabs{8} = uitab(MainAxes.Tabs{6},'Title','Velocity');
+MainAxes.Tabs{9} = uitab(MainAxes.Tabs{6},'Title','Displacement');
+
+
 IMs
 
-MainAxes.Titles = {'Reference Accelerogram','Energy Distribution','Synthetic Accelerogram','Design / Response Spectra','Power Spectral Density','Reference accelerogram epectrogram','Synthetic accelerogram epectrogram'};
-MainAxes.xLabels = {'Time [s]','Time [s]','Time [s]','Period [s]','Frequency [Hz]','Time [s]','Time [s]'};
-MainAxes.yLabels = {'Acceleration [g]','E / E_{max} [-]','Acceleration [g]','Pseudo-Acceleration [g]','Power / Frequency [dB/Hz]','Frequency [Hz]','Frequency [Hz]'};
+MainAxes.Titles = {'Reference Accelerogram','Energy Distribution','Synthetic Accelerogram','Design / Response Spectra','Power Spectral Density','Reference accelerogram epectrogram','Synthetic accelerogram epectrogram','Reference velocity time history','Energy Distribution','Synthetic velocity time history','Reference displacement time history','Energy Distribution','Synthetic displacement time history'};
+MainAxes.xLabels = {'Time [s]','Time [s]','Time [s]','Period [s]','Frequency [Hz]','Time [s]','Time [s]','Time [s]','Time [s]','Time [s]','Time [s]','Time [s]','Time [s]'};
+MainAxes.yLabels = {'Acceleration [g]','E / E_{max} [-]','Acceleration [g]','Pseudo-Acceleration [g]','Power / Frequency [dB/Hz]','Frequency [Hz]','Frequency [Hz]','Velociity [m/s]','E / E_{max} [-]','Velocity [m/s]','Displacement [m]','E / E_{max} [-]','Displacement [m]'};
 MainAxes.zLabels = {'|A|'};
 
-for i = 7:-1:1
+for i = 13:-1:1
     if i == 4
         MainAxes.ax{i} = axes('Parent',MainAxes.Tabs{2},'Units','normalized','Position',[0.10 0.10 0.85 0.85],'NextPlot','add');
     elseif i == 5
@@ -60,8 +65,12 @@ for i = 7:-1:1
         MainAxes.ax{i} = axes('Parent',MainAxes.Tabs{4},'Units','normalized','Position',[0.10 0.55 0.85 0.40],'NextPlot','add');
     elseif i==7
         MainAxes.ax{i} = axes('Parent',MainAxes.Tabs{4},'Units','normalized','Position',[0.10 0.10 0.85 0.40],'NextPlot','add');
+    elseif i<4
+        MainAxes.ax{i} = axes('Parent',MainAxes.Tabs{7},'Units','normalized','Position',[0.10 1-0.3*i 0.85 0.22],'NextPlot','add');
+    elseif i>7 && i<11
+        MainAxes.ax{i} = axes('Parent',MainAxes.Tabs{8},'Units','normalized','Position',[0.10 1-0.3*(i-7) 0.85 0.22],'NextPlot','add');
     else
-        MainAxes.ax{i} = axes('Parent',MainAxes.Panel,'Units','normalized','Position',[0.05 1-0.3*i 0.4 0.2],'NextPlot','add');
+        MainAxes.ax{i} = axes('Parent',MainAxes.Tabs{9},'Units','normalized','Position',[0.10 1-0.3*(i-10) 0.85 0.22],'NextPlot','add');
     end
 
     MainAxes.ax{i}.FontSize = 8;
@@ -109,9 +118,18 @@ MainAxes.pl{2,5} = plot(MainAxes.ax{5},nan,nan,'LineWidth',1,'color','#D95319','
 MainAxes.Mesh{1} = mesh(MainAxes.ax{6},[]); MainAxes.Mesh{1}.EdgeColor = 'interp'; MainAxes.Mesh{1}.FaceColor = 'interp'; axis(MainAxes.ax{6},'ij');
 MainAxes.Mesh{2} = mesh(MainAxes.ax{7},[]); MainAxes.Mesh{2}.EdgeColor = 'interp'; MainAxes.Mesh{2}.FaceColor = 'interp'; axis(MainAxes.ax{7},'ij');
 
+MainAxes.pl{1,8} = plot(MainAxes.ax{8},nan,nan,'LineWidth',1,'color','#0072BD','LineStyle','-');
+MainAxes.pl{1,9} = plot(MainAxes.ax{9},nan,nan,'LineWidth',1,'color','#0072BD','LineStyle','-');
+MainAxes.pl{1,10} = plot(MainAxes.ax{10},nan,nan,'LineWidth',1,'color','#D95319','LineStyle','-');
+MainAxes.pl{2,9} = plot(MainAxes.ax{9},nan,nan,'LineWidth',1,'color','#D95319','LineStyle','-');
+
+MainAxes.pl{1,11} = plot(MainAxes.ax{11},nan,nan,'LineWidth',1,'color','#0072BD','LineStyle','-');
+MainAxes.pl{1,12} = plot(MainAxes.ax{12},nan,nan,'LineWidth',1,'color','#0072BD','LineStyle','-');
+MainAxes.pl{1,13} = plot(MainAxes.ax{13},nan,nan,'LineWidth',1,'color','#D95319','LineStyle','-');
+MainAxes.pl{2,12} = plot(MainAxes.ax{12},nan,nan,'LineWidth',1,'color','#D95319','LineStyle','-');
 
 MainAxes.lgd{1} = legend([MainAxes.pl{1,2} MainAxes.pl{2,2}], ...
-    'Reference Accelerogram','Synthetic Accelerogram','Location','southeast');
+    'Reference','Synthetic','Location','southeast');
 MainAxes.lgd{2} = legend([MainAxes.pl{1,4} MainAxes.pl{2,4} MainAxes.pl{3,4} MainAxes.pl{4,4} MainAxes.pl{5,4}], ...
     'Response Spectrum - Reference','Target Design Spectrum','Response Spectrum - Synthetic','90% Target Design Spectrum','80% Target Design Spectrum');
 MainAxes.lgd{3} = legend([MainAxes.pl{1,5} MainAxes.pl{2,5}], ...
@@ -120,6 +138,10 @@ MainAxes.lgd{4} = legend([MainAxes.Mesh{1}], ...
     'Spectrogram - Reference','Location','southeast');
 MainAxes.lgd{5} = legend([MainAxes.Mesh{2}], ...
     'Spectrogram - Synthetic','Location','southeast');
+MainAxes.lgd{6} = legend([MainAxes.pl{1,9} MainAxes.pl{2,9}], ...
+    'Reference','Synthetic','Location','southeast');
+MainAxes.lgd{6} = legend([MainAxes.pl{1,12} MainAxes.pl{2,12}], ...
+    'Reference','Synthetic','Location','southeast');
 
 % === MODULES ===
 DesignSpectrum
