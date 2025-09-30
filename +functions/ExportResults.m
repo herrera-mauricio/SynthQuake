@@ -62,18 +62,23 @@ Spect_NM = array2table(Spect_Abs);
 Spec_Syn = renamevars(Spect_NM, 1:width(Spect_NM), headerNames);
 
 % --- Sheet 6: Intensity Measures ---
-IM_Labels = {'PGA [g]'; 'CAV [cm/s]'; 'Ia [m/s]'; 'Ic [-]'; 'Arms [g]'; 'ASI [-]'; 't5 [s]'; 'DS [s]'; 't95 [s]'};
+IM_Labels = {'PGA [g]'; 'PGV [m/s]'; 'PGD [m]'; 'CAV [cm/s]'; 'Ia [m/s]'; 'Ic [-]'; 'Arms [g]'; 'ASI [-]'; 'HI [m]'; 't5 [s]'; 'DS [s]'; 't95 [s]';'Num.Iter. [-]'; 'Max.Err. [%]'};
 IM_Names = {'Peak Ground Acceleration';
+            'Peak Ground Velocity';
+            'Peak Ground Displacement';
             'Cumulative Absolute Velocity';
             'Arias Intensity';
             'Characteristic Intensity';
             'Root-Mean Square of Acceleration';
             'Acceleration Spectral Intensity';
+            'Housner Intensity';
             'Time at 5% Arias Intensity';
             'Significant Duration';
-            'Time at 95% Arias Intensity'};
-IM_Ref = [Op.PGA_RM; Op.CAV_RM; max(Op.AI_RM); Op.Ic_RM; Op.Arms_RM; Op.ASI_RM; Op.AIRM_t5; Op.DsRM; Op.AIRM_t95];
-IM_Syn = [Op.PGA_NM; Op.CAV_NM; max(Op.AI_NM); Op.Ic_NM; Op.Arms_NM; Op.ASI_NM; Op.AINM_t5; Op.DsNM; Op.AINM_t95];
+            'Time at 95% Arias Intensity';
+            'Number of iterations';
+            'Error achieved in the response spectrum'};
+IM_Ref = [Op.PGA_RM; Op.PGV_RM; Op.PGD_RM; Op.CAV_RM; max(Op.AI_RM); Op.Ic_RM; Op.Arms_RM; Op.ASI_RM; Op.HI_RM; Op.AIRM_t5; Op.DsRM; Op.AIRM_t95; 0; 0];
+IM_Syn = [Op.PGA_NM; Op.PGV_NM; Op.PGD_NM; Op.CAV_NM; max(Op.AI_NM); Op.Ic_NM; Op.Arms_NM; Op.ASI_NM; Op.HI_NM; Op.AINM_t5; Op.DsNM; Op.AINM_t95; Op.Num_Iter; Op.R*100];
 IMTable = table(IM_Labels, IM_Names, IM_Ref, IM_Syn, ...
     'VariableNames', {'IM', 'Description', 'Value Reference Accelerogram', 'Value Synthetic Accelerogram'});
 
