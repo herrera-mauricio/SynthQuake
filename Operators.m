@@ -7,6 +7,8 @@ classdef Operators<handle
         Time=nan;
         Real_Motion=nan;
         ResampledReal_Motion=nan;
+        Real_Motion_Velocity=nan;
+        Real_Motion_Displacement=nan;
         T=nan;
         F=nan;
         w=nan;
@@ -16,11 +18,17 @@ classdef Operators<handle
         AI_RM=nan;
         DsRM=nan;
         PSA_RM=nan;
+        PSV_RM=nan;
+        PSD_RM=nan;
         z=nan;
         Max_Iter=nan;
         TOL=nan;
         New_Motion=nan;
+        New_Motion_Velocity=nan;
+        New_Motion_Displacement=nan;
         PSA_NM=nan;
+        PSV_NM=nan;
+        PSD_NM=nan;
         Num_Iter=nan;
         R=nan;
         AI_NM=nan;
@@ -47,10 +55,16 @@ classdef Operators<handle
         Ic_RM=nan;
         ASI_RM=nan;
         PGA_NM=nan;
+        PGV_NM=nan;
+        PGD_NM=nan;
         CAV_NM=nan;
         Arms_NM=nan;
         Ic_NM=nan;
         ASI_NM=nan;
+        PGV_RM=nan;
+        PGD_RM=nan;
+        HI_RM=nan;
+        HI_NM=nan;
 
         %Objetos
         Main=nan;
