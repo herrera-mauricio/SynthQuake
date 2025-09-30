@@ -14,6 +14,15 @@ set(MainAxes.pl{2,5},'XData',nan,'YData',nan); %PLot para el espectro de respues
 set(MainAxes.Mesh{1},'XData',nan,'YData',nan,'ZData',nan); %PLot para el espectrograma
 set(MainAxes.Mesh{2},'XData',nan,'YData',nan,'ZData',nan); %PLot para el espectrograma
 
+set(MainAxes.pl{1,8},'XData',nan,'YData',nan);
+set(MainAxes.pl{1,9},'XData',nan,'YData',nan);
+set(MainAxes.pl{1,10},'XData',nan,'YData',nan);
+set(MainAxes.pl{2,9},'XData',nan,'YData',nan);
+set(MainAxes.pl{1,11},'XData',nan,'YData',nan);
+set(MainAxes.pl{1,12},'XData',nan,'YData',nan);
+set(MainAxes.pl{1,13},'XData',nan,'YData',nan);
+set(MainAxes.pl{2,12},'XData',nan,'YData',nan);
+
 set(MethodButtons{1}.Edit{2},'String',strings(1));
 set(MethodButtons{1}.Edit{4},'String',strings(1));
 set(MethodButtons{1}.Edit{6},'String',strings(1));
@@ -22,7 +31,7 @@ set(MethodButtons{3}.Edit{2},'String',strings(1));
 set(MethodButtons{3}.Edit{4},'String',strings(1));
 set(MethodButtons{3}.Edit{6},'String',strings(1));
 
-for i=10:18
+for i=13:24
     set(IM.Buttons{1}.Edit{i},'String',[])
     set(IM.Buttons{2}.Edit{i},'String',[])
 end
